@@ -32,5 +32,9 @@ public class DemoLoggingAspect {
     public void beforeAnyMethodThatStartsWithAddAndTakesAccountParameterFolledByAnyNumberOfParametersAdvice() {
         System.out.println("Executing @Before advice on a method that starts with 'add' and takes an Account as a parameter followed by any number of parameters.");
     }
-
+    
+    @Before("execution(* add*(..))")
+    public void beforeAnyMethodThatStartsWithAddAndTakesAnyNumberOfParametersAdvice() {
+        System.out.println("Executing @Before advice on a method that starts with 'add' and takes any number of parameters.");
+    }
 }
