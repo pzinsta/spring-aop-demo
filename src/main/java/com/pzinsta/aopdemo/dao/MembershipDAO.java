@@ -3,9 +3,9 @@ package com.pzinsta.aopdemo.dao;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AccountDAO {
+public class MembershipDAO {
 
     public void addAccount() {
-        System.out.println("AccountDAO addAccount() Doing DB work.");
+        System.out.println("MembershipDAO addAccount() doing work.");
     }
 }
