@@ -23,6 +23,8 @@ public class MainDemoApp {
         Account account = new Account();
         accountDAO.addAccount(account);
         
+        accountDAO.addAccount(account, 0);
+        
         context.close();
     }
 
