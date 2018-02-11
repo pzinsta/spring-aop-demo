@@ -12,4 +12,9 @@ public class DemoLoggingAspect {
     public void beforeAddAccountAdvice() {
         System.out.println("Executing @Before advice on addAccount().");
     }
+    
+    @Before("execution(public void com.pzinsta.aopdemo.dao.AccountDAO.addAccount())")
+    public void beforeAddAccountOnAccountDaoAdvice() {
+        System.out.println("Executing @Before advice on AccountDAO.addAccount().");
+    }
 }
