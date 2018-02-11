@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.pzinsta.aopdemo.config.DemoConfig;
 import com.pzinsta.aopdemo.dao.AccountDAO;
 import com.pzinsta.aopdemo.dao.MembershipDAO;
+import com.pzinsta.aopdemo.model.Account;
 
 public class MainDemoApp {
 
@@ -18,6 +19,9 @@ public class MainDemoApp {
         accountDAO.addAccount();
         membershipDAO.addAccount();
         membershipDAO.addMember();
+        
+        Account account = new Account();
+        accountDAO.addAccount(account);
         
         context.close();
     }
