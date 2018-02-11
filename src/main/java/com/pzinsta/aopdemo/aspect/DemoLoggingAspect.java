@@ -17,4 +17,9 @@ public class DemoLoggingAspect {
     public void beforeAddAccountOnAccountDaoAdvice() {
         System.out.println("Executing @Before advice on AccountDAO.addAccount().");
     }
+    
+    @Before("execution(public void add*())")
+    public void beforeAnyMethodThatStartsWithAddAdvice() {
+        System.out.println("Executing @Before advice on a method that starts with 'add'.");
+    }
 }
