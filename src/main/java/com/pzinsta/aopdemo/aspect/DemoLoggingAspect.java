@@ -37,4 +37,9 @@ public class DemoLoggingAspect {
     public void beforeAnyMethodThatStartsWithAddAndTakesAnyNumberOfParametersAdvice() {
         System.out.println("Executing @Before advice on a method that starts with 'add' and takes any number of parameters.");
     }
+    
+    @Before("execution(* com.pzinsta.aopdemo.dao.*.*(..))")
+    public void beforeAnyMethodWithAnyParametersInAnyClassInSpecifiedPackageAdvice() {
+        System.out.println("Executing @Before advice on a method with any number and types of parameters in any class in the com.pzinsta.aopdemo.dao package.");
+    }
 }
