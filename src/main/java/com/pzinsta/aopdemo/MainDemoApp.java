@@ -25,6 +25,11 @@ public class MainDemoApp {
         
         accountDAO.addAccount(account, 0);
         
+        accountDAO.setName("name");
+        accountDAO.setServiceCode("serviceCode");
+        accountDAO.getName();
+        accountDAO.getServiceCode();
+        
         context.close();
     }
 

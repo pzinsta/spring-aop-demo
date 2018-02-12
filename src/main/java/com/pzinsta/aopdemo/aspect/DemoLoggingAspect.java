@@ -12,6 +12,15 @@ public class DemoLoggingAspect {
     @Pointcut("execution(* com.pzinsta.aopdemo.dao.*.*(..))")
     private void forDaoPackage() {}
     
+    @Pointcut("execution(* com.pzinsta.aopdemo.dao.*.get*(..))")
+    private void getterInDaoPackage() {}
+    
+    @Pointcut("execution(* com.pzinsta.aopdemo.dao.*.set*(..))")
+    private void setterInDaoPackage() {}
+    
+    @Pointcut("forDaoPackage() && !(getterInDaoPackage() || setterInDaoPackage())")
+    private void anyMethodInDaoPackageExcludingGettersAndSetters() {}
+    
     @Before("execution(public void addAccount())")
     public void beforeAddAccountAdvice() {
         System.out.println("Executing @Before advice on addAccount().");
@@ -50,5 +59,10 @@ public class DemoLoggingAspect {
     @Before("forDaoPackage()")
     public void beforeAnyMethodWithAnyParametersInAnyClassInSpecifiedPackageUsingPointcutDeclarationAdvice() {
         System.out.println("Executing @Before advice on a method with any number and types of parameters in any class in the com.pzinsta.aopdemo.dao package using @Pointcut declaration.");
+    }
+    
+    @Before("anyMethodInDaoPackageExcludingGettersAndSetters()")
+    public void beforeAnyMethodWithAnyParametersInAnyClassInSpecifiedPackageExcludingGettersAndSettersAdvice() {
+        System.out.println("Executing @Before advice on a method with any number and types of parameters in any class in the com.pzinsta.aopdemo.dao package excluding getters and setters.");
     }
 }
