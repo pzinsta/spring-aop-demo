@@ -2,12 +2,16 @@ package com.pzinsta.aopdemo.aspect;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class DemoLoggingAspect {
 
+    @Pointcut("execution(* com.pzinsta.aopdemo.dao.*.*(..))")
+    private void forDaoPackage() {}
+    
     @Before("execution(public void addAccount())")
     public void beforeAddAccountAdvice() {
         System.out.println("Executing @Before advice on addAccount().");
@@ -41,5 +45,10 @@ public class DemoLoggingAspect {
     @Before("execution(* com.pzinsta.aopdemo.dao.*.*(..))")
     public void beforeAnyMethodWithAnyParametersInAnyClassInSpecifiedPackageAdvice() {
         System.out.println("Executing @Before advice on a method with any number and types of parameters in any class in the com.pzinsta.aopdemo.dao package.");
+    }
+    
+    @Before("forDaoPackage()")
+    public void beforeAnyMethodWithAnyParametersInAnyClassInSpecifiedPackageUsingPointcutDeclarationAdvice() {
+        System.out.println("Executing @Before advice on a method with any number and types of parameters in any class in the com.pzinsta.aopdemo.dao package using @Pointcut declaration.");
     }
 }
