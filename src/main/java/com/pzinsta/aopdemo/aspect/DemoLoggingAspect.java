@@ -1,5 +1,8 @@
 package com.pzinsta.aopdemo.aspect;
 
+import java.util.Arrays;
+
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
@@ -53,5 +56,13 @@ public class DemoLoggingAspect {
     @Before("com.pzinsta.aopdemo.aspect.AopExpressions.anyMethodInDaoPackageExcludingGettersAndSetters()")
     public void beforeAnyMethodWithAnyParametersInAnyClassInSpecifiedPackageExcludingGettersAndSettersAdvice() {
         System.out.println("Executing @Before advice on a method with any number and types of parameters in any class in the com.pzinsta.aopdemo.dao package excluding getters and setters.");
+    }
+    
+    @Before("com.pzinsta.aopdemo.aspect.AopExpressions.anyMethodInDaoPackageExcludingGettersAndSetters()")
+    public void displayMethodSignatureBeforeAdvice(JoinPoint joinPoint) {
+        System.out.println("Method: " + joinPoint.getSignature());
+        
+        System.out.println("Arguments: ");
+        Arrays.stream(joinPoint.getArgs()).forEach(System.out::println);
     }
 }
