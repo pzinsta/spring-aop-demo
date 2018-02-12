@@ -12,7 +12,7 @@ public class ApiAnalyticsAspect {
 
     @Before("com.pzinsta.aopdemo.aspect.AopExpressions.anyMethodInDaoPackageExcludingGettersAndSetters()")
     public void beforeAddAccountOnAccountDaoAdvice() {
-        System.out.println("ApiAnalyticsAspect: Executing @Before advice on AccountDAO.addAccount().");
+        System.out.println("ApiAnalyticsAspect: Executing @Before advice.");
     }
     
 }

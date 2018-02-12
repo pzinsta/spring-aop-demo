@@ -12,7 +12,7 @@ public class CloudLoggingAspect {
 
     @Before("com.pzinsta.aopdemo.aspect.AopExpressions.anyMethodInDaoPackageExcludingGettersAndSetters()")
     public void beforeAddAccountOnAccountDaoAdvice() {
-        System.out.println("CloudLoggingAspect: Executing @Before advice on AccountDAO.addAccount().");
+        System.out.println("CloudLoggingAspect: Executing @Before advice.");
     }
     
 }
