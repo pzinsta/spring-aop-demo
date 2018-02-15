@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
@@ -87,6 +88,14 @@ public class DemoLoggingAspect {
 
     private void convertNamesToUpperCase(List<Account> result) {
         result.stream().forEach(account -> account.setName(account.getName().toUpperCase()));
+    }
+    
+    @AfterThrowing(pointcut = "execution(* com.pzinsta.aopdemo.dao.AccountDAO.findAccountsThrowingException(..))", throwing = "exception")
+    public void afterThrowingFindAccountsAdvice(JoinPoint joinPoint, Throwable exception) {
+        System.out.println("Executing @AfterThrowing advice on " + joinPoint.getSignature().toShortString());
+        
+        System.out.println("The exception is: " + exception);
+        
     }
     
 }

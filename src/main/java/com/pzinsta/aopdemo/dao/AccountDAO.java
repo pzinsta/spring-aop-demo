@@ -31,6 +31,10 @@ public class AccountDAO {
         account.setLevel("my level");
         return Arrays.asList(account);
     }
+    
+    public List<Account> findAccountsThrowingException() {
+        throw new RuntimeException("An exception occurred.");
+    }
 
     public String getServiceCode() {
         System.out.println("AccountDAO.getServiceCode()");
