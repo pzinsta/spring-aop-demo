@@ -1,12 +1,16 @@
 package com.pzinsta.aopdemo.aspect;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.core.annotation.Order;
@@ -102,9 +106,25 @@ public class DemoLoggingAspect {
     @After("execution(* com.pzinsta.aopdemo.dao.AccountDAO.findAccounts*(..))")
     public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint) {
         System.out.println("Executing @After (finally) advice on " + joinPoint.getSignature().toShortString());
+    }
+    
+    @Around("execution(* com.pzinsta.aopdemo.service.*.getFortune(..))")
+    public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        System.out.println("Executing @Around (finally) advice on " + proceedingJoinPoint.getSignature().toShortString());
         
-       // System.out.println("The exception is: " + exception);
+        Instant start = Instant.now();
         
+        System.out.println("method called at " + start);
+        
+        Object result = proceedingJoinPoint.proceed();
+        
+        Instant end = Instant.now();
+        
+        System.out.println("method returned at " + end);
+        
+        System.out.println("duration: " + ChronoUnit.MILLIS.between(start, end));
+        
+        return result;
     }
     
 }
