@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -95,6 +96,14 @@ public class DemoLoggingAspect {
         System.out.println("Executing @AfterThrowing advice on " + joinPoint.getSignature().toShortString());
         
         System.out.println("The exception is: " + exception);
+        
+    }
+    
+    @After("execution(* com.pzinsta.aopdemo.dao.AccountDAO.findAccounts*(..))")
+    public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint) {
+        System.out.println("Executing @After (finally) advice on " + joinPoint.getSignature().toShortString());
+        
+       // System.out.println("The exception is: " + exception);
         
     }
     
